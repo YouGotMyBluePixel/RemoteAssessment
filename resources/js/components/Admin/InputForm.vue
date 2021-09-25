@@ -1,7 +1,10 @@
 <template lang="">
-    <div>
-        <label class="text-gray-600 font-light">Big Size Input</label>
-<input type='text' placeholder="Enter your input here" class="w-full mt-2 mb-6 px-6 py-3 border rounded-lg text-lg text-gray-700 focus:outline-none" />
+    <div><form submit="postData" method="post">
+       <input type="text" name="Title" placeholder="Title"></input>
+       <textarea id="snippet_description" name="snippet_description" rows="4" cols="50">Snippet Description</textarea>
+       <textarea id="html_snippet" name="html_snippet" rows="4" cols="50">HTML SNIPPET</textarea>
+       <button type="submit">Create</button>
+       </form>
     </div>
 </template>
 <script>

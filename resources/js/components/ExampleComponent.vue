@@ -13,6 +13,7 @@
             <div class="ml-10 flex items-baseline space-x-4">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
               <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Dashboard</a>
+            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Create Resources</a>
 
               
             </div>
@@ -115,7 +116,7 @@
   <header class="bg-white shadow">
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
       <h1 class="text-3xl font-bold text-gray-900">
-        Dashboard
+        Dashboards
       </h1>
     </div>
   </header>
@@ -123,9 +124,32 @@
     <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
       <!-- Replace with your content -->
       <div class="px-4 py-6 sm:px-0">
-        <div class="border-4 border-dashed border-gray-200 rounded-lg h-96">
-            <base-input></base-input>
-        </div>
+ <table class="table table-hover table-bordered" id="example">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>HTML Title</th>
+        <th>Snippet Description</th>
+        <th>Snippet</th>
+        <th>Title of Link</th>
+        <th>Link</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="user in users" :key="user.id">
+        <td>{{user.id}}</td>
+         <td>{{user.Html_Title}}</td>
+        <td>{{user.Snippet_Description}}</td>
+        <td>{{user.Html_Snippet}}</td>
+        <td>{{user.Link_Title}}</td>
+        <td>{{user.link_itself}}</td>
+
+       
+      </tr>
+      
+    </tbody>
+  </table>
+        
       </div>
       <!-- /End replace -->
     </div>
@@ -136,19 +160,44 @@
 </template>
 
 <script>
-import BaseInput from './Admin/FileUpload.vue'
+import FileUpload from './Admin/FileUpload.vue'
+import InputForm from './Admin/InputForm.vue'
+import $ from 'jquery'; 
+import axios from 'axios';
+
+
+
+
     export default {
+         mounted(){
+    //API Call
+    axios
+    .get("/files")
+    .then((res)=>
+    {
+      this.users = res.data;
+     setTimeout(function(){ $("#example").DataTable(); }, 10);
+      
+    })
+  },
         components: {
-            BaseInput
+            FileUpload,
+            InputForm
         },
+        
         data() {
             return {
-                
-            };
+              users:[]
+            }
         },
+        
         methods: {
             
-        }
+            
+        },
+        
+        
     }
 
 </script>
+

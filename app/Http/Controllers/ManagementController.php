@@ -51,7 +51,11 @@ class ManagementController extends Controller
              return response()->json(['success'=>'File uploaded successfully.']);
          }
     }
-       
+    public function getFile(Request $request)
+    {
+        $File = File::get();
+        return response()->json($File);
+    }    
        
     
 

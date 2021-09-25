@@ -10,6 +10,12 @@ class File extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'path'
+        'path',
+       'Html_Title',
+       'Snippet_Description',
+       'Html_Snippet',
+       'Link_Title',
+       'link_itself',
+       'Open_tab'
     ];    
 }

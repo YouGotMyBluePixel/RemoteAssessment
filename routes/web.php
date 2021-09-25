@@ -17,4 +17,5 @@ use App\Http\Controllers\ManagementController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/files', [ManagementController::class, 'getFile']);
 Route::post('/store', [ManagementController::class, 'store']);
