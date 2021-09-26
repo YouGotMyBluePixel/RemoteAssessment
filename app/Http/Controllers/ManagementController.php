@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\File;
-
+use App\Models\Html;
+use App\Models\Links;
+use App\Models\PDFs;
 use Illuminate\Http\Request;
 
 class ManagementController extends Controller
@@ -14,7 +15,7 @@ class ManagementController extends Controller
      */
     public function index()
     {
-        //
+        return view('welcome');
     }
 
     /**
@@ -51,11 +52,21 @@ class ManagementController extends Controller
              return response()->json(['success'=>'File uploaded successfully.']);
          }
     }
-    public function getFile(Request $request)
+    public function getHtml(Request $request)
     {
-        $File = File::get();
-        return response()->json($File);
+        $Html = Html::get();
+        return response()->json($Html);
     }    
+    public function getLinks(Request $request)
+    {
+        $Links = Links::get();
+        return response()->json($Links);
+    }    
+    public function getPdfs(Request $request)
+    {
+        $PDFs = PDFs::get();
+        return response()->json($PDFs);
+    }   
        
     
 
