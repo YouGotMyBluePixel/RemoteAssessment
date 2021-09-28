@@ -4,7 +4,7 @@
 <div>
   <nav-bar>
   </nav-bar>
-
+<notifications group="success" />
    <div class="px-4 py-6 sm:px-0">
      <button
       type="button"
@@ -84,6 +84,9 @@ import InputForm from './Admin/InputForm.vue'
 import NavBar from './Layouts/AdminNavBar.vue'
 import $ from 'jquery'; 
 import axios from 'axios';
+Vue.use(Notifications)
+import Vue           from 'vue'
+import Notifications from 'vue-notification'
 
 
 

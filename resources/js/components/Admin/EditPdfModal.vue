@@ -1,9 +1,10 @@
 <template lang="">
+<transition name="modal-fade">
     <div class="modal-backdrop">
     <div class="modal">
       <header class="modal-header">
         <slot name="header">
-          Add Data
+          EDIT PDF
         </slot>
         <button
           type="button"
@@ -13,46 +14,39 @@
           x
         </button>
       </header>
-
       <section class="modal-body">
         <slot name="body">
-           <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-
-                    <div class="card-body">
-                        <div v-if="success != ''" class="alert alert-success">
-                            {{success}}
-                        </div>
-                        <form @submit="formSubmit" enctype="multipart/form-data">
-                           <input type="text" class="form-control" v-model="name">
-                            <input type="file" class="form-control" v-on:change="onChange">
+          <div class="grid grid-cols-1 space-y-2">
+             <input type="text" class="form-control" v-model="pdf.name">
+              <input type="file" class="form-control" v-on:change="onChange">
                             <button class="btn btn-primary btn-block">Upload</button>
-                        </form>
-                    </div>
-                </div>
             </div>
-        </div>
-    </div>
+             <button
+              @click="$emit('editpdf', pdf.id, pdf, file)"
+              class="text-green-500 bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+              type="button"
+            >
+              Save Changes
+            </button>
         </slot>
        </section>
 
       <footer class="modal-footer">
-        <slot name="footer">
-          This is the default footer!
-        </slot>
+        <!-- <slot name="footer"> -->
+          
+        <!-- </slot> -->
         <button
-          type="button"
-          class="btn-green"
-          @click="close"
-        >
-          Close Modal
-        </button>
+             @click="close"
+              class="text-green-500 bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+              type="button"
+            >
+            Close
+            </button>
       </footer>
     </div>
   </div>
   </div>
+  </transition>
 </template>
 <script>
 
@@ -60,49 +54,35 @@
 
 export default {
 
- data() {
-            return {
-              pdf: {},
-                name: '',
-                file: '',
-                success: ''
-            };
-        },
+props: {
+    pdf: Object,
+  },
     methods: {
       close() {
         this.$emit('close');
       },
-      onChange(e) {
+       onChange(e) {
                 this.file = e.target.files[0];
             },
-           
-            formSubmit(e) {
-                e.preventDefault();
-                let existingObj = this;
-
-                const config = {
-                    headers: {
-                        'content-type': 'multipart/form-data'
-                    }
-                }
-
-                let data = new FormData();
-                data.append('file', this.file);
-                data.append('name', this.name);
-
-                axios.post('api/store', data, config)
-                    .then(function (res) {
-                        existingObj.success = res.data.success;
-                    })
-                    .catch(function (err) {
-                        existingObj.output = err;
-                    });
-                    location.reload();
-            }
+    },
+    updateLink() {
+      this.LinkInfo.push({
+        name: this.Link.name,
+      })
+      console.log(this.Link)
     },
     components: {
         
     },
+    data() {
+    return {
+      name: '',
+      path: '',
+      file: '',
+     
+    }
+  },
+    
   
 }
 </script>
@@ -145,6 +125,16 @@ export default {
     border-top: 1px solid #eeeeee;
     flex-direction: column;
     justify-content: flex-end;
+  }
+
+  .modal-fade-enter,
+  .modal-fade-leave-to {
+    opacity: 0;
+  }
+
+  .modal-fade-enter-active,
+  .modal-fade-leave-active {
+    transition: opacity .4s ease;
   }
 
   .modal-body {

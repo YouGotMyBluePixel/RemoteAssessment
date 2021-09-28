@@ -14,6 +14,9 @@ import 'jquery/dist/jquery.min.js';
 import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 
+import Notifications from 'vue-notification/dist/ssr.js'
+Vue.use(Notifications)
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -40,6 +43,7 @@ import "datatables.net-dt/css/jquery.dataTables.min.css"
  import Home from './components/AdminMainComponent.vue'
  import LinkTable from './components/Admin/LinkTable.vue'
  import PDFTable from './components/Admin/PdfTable.vue'
+ import Visitors from './components/Admin/Visitors.vue'
  const router = new VueRouter({
      mode: 'history',
      routes: [
@@ -57,6 +61,11 @@ import "datatables.net-dt/css/jquery.dataTables.min.css"
             path: '/pdfs',
             name: 'pdf',
             component: PDFTable
+        },
+        {
+            path: '/visitors',
+            name: 'visitor',
+            component: Visitors
         },
          
      ],

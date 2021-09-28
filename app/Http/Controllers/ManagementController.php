@@ -42,7 +42,7 @@ class ManagementController extends Controller
          ]);
          $File = new PDFs;
          if($request->file()) {
-             $file_name =$request->file->getClientOriginalName();
+             $file_name = $request->file->getClientOriginalName();
              $file_path = $request->file('file')->storeAs('uploads', $file_name, 'public');
  
              $File->name = $request->get('name');
@@ -52,6 +52,8 @@ class ManagementController extends Controller
              return response()->json(['success'=>'File uploaded successfully.']);
          }
     }
+    
+    
     public function storeHtml(Request $request)
     {
         $html = new Html([
@@ -73,19 +75,29 @@ class ManagementController extends Controller
         $Links = Links::get();
         return response()->json($Links);
     }    
-    public function getPdfs(Request $request)
+    
+    public function updatePdf(Request $request)
     {
-        $PDFs = PDFs::get();
-        return response()->json($PDFs);
-    }   
-    public function updateHtml($id, Request $request)
-    {
-        $Html = Html::findOrFail($id);
-        $Html->update($request->all());
+        $id=$request->get('id');
+        $File=PDFs::find($id);
 
-        return response()->json('Html updated!');
+        $File->update($request->all());
+
+        $this->validate($request,[
+            'file' => 'required|max:2048'
+        ]);
+        $currentPhoto = $File->path;
+        if($request->path != $currentPhoto){
+            $file_name = $request->file->getClientOriginalName();
+            $file_path = $request->file('file')->storeAs('uploads', $file_name, 'public');
+
+            $File->name = $request->get('name');
+            $File->path = '/storage/' . $file_path;
+            $File->save();
+
+        return response()->json('Photo updated!');
     }
-       
+}
     
 
     /**
@@ -128,8 +140,5 @@ class ManagementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+   
 }
