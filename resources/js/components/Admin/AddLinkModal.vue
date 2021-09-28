@@ -31,7 +31,7 @@
                     </div>
                      <div class="form-group">
                         <label>Open in new tab</label>
-                        <input type="checkbox" value="true" v-model="Tab">
+                        <input type="checkbox" v-model="Tab">
                     </div>
                   <button type="submit" class="text-green-500 bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Create</button>
                 </form>
@@ -69,7 +69,7 @@ export default {
                 link: {},
                 Title:'',
                 Link:'',
-                Tab:1,
+                Tab:0,
 
             }
         },
@@ -86,7 +86,7 @@ export default {
 
                     })
                     .then(response => (
-                        this.$router.push({ name: 'home' })
+                        this.$router.push()
                     ))
                     .catch(err => console.log(err))
                     .finally(() => this.loading = false)

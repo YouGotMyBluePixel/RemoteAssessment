@@ -5,13 +5,15 @@
                 <div class="card">
 
                     <div class="card-body">
-
                         <div v-if="success != ''" class="alert alert-success">
                             {{success}}
                         </div>
                         
-
                         <form @submit="formSubmit" enctype="multipart/form-data">
+                         <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control">
+                    </div>
                             <input type="file" class="form-control" v-on:change="onChange">
                             <button class="btn btn-primary btn-block">Upload</button>
                         </form>

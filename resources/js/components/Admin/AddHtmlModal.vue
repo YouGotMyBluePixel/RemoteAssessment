@@ -80,8 +80,10 @@ export default {
                     .then(response => (
                         this.$router.push({ name: 'home' })
                     ))
+                    
                     .catch(err => console.log(err))
                     .finally(() => this.loading = false)
+                    location.reload();
             }
     },
     components: {

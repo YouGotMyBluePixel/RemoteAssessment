@@ -16,7 +16,28 @@
 
       <section class="modal-body">
         <slot name="body">
-          <FileUpload></FileUpload>
+           <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+
+                    <div class="card-body">
+                        <div v-if="success != ''" class="alert alert-success">
+                            {{success}}
+                        </div>
+                        <form @submit="formSubmit" enctype="multipart/form-data">
+                         <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control">
+                    </div>
+                            <input type="file" class="form-control" v-on:change="onChange">
+                            <button class="btn btn-primary btn-block">Upload</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
         </slot>
        </section>
 
@@ -38,7 +59,7 @@
 </template>
 <script>
 
-import FileUpload from './FileUpload.vue'
+
 
 export default {
 
@@ -49,7 +70,7 @@ export default {
       },
     },
     components: {
-        FileUpload
+        
     },
   
 }

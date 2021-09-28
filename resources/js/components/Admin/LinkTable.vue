@@ -118,10 +118,17 @@ export default {
         this.linkData = link;
         this.isDeleteLinkModalVisible = !this.isDeleteLinkModalVisible
       },
-        },
-    async editlink(id, updatedLink) {
+        
+    async editlink(id, updatedLink){
       this.isEditLinkModalVisible = !this.isEditLinkModalVisible
       try {
+        if (updatedLink.New_Tab) {
+          
+            updatedLink.New_Tab= 1;
+        }
+        else {
+           updatedLink.New_Tab= 0;
+        }
         var form = new FormData()
         form.append('id', id)
         form.append('Link_Title', updatedLink.Link_Title)
@@ -130,6 +137,7 @@ export default {
         await axios.post( `api/links/`,
           form
         )
+        location.reload();
         //Reloads Page after update button pressed
     
         console.log(updatedLink)
@@ -144,19 +152,21 @@ export default {
         })
         console.log(e.message)
       }
-
+},
       // return
-    },
+    
     async deleteLink(id) {
       try {
         this.isDeleteLinkModalVisible = !this.isDeleteLinkModalVisible
         await axios.delete(
           `api/links/${id}`
         )
+        location.reload();
         this.$notify({
           group: 'success',
           text: 'Point was successfully deleted',
         })
+        location.reload();
       } catch (error) {
         this.$notify({
           group: 'error',
@@ -165,7 +175,7 @@ export default {
        
       }
     },
-
+},
 
 }
 </script>

@@ -42,10 +42,10 @@ class ManagementController extends Controller
          ]);
          $File = new PDFs;
          if($request->file()) {
-             $file_name = time().'_'.$request->file->getClientOriginalName();
+             $file_name =$request->file->getClientOriginalName();
              $file_path = $request->file('file')->storeAs('uploads', $file_name, 'public');
  
-             $File->name = time().'_'.$request->file->getClientOriginalName();
+             $File->name = $request->get('name');
              $File->path = '/storage/' . $file_path;
              $File->save();
  

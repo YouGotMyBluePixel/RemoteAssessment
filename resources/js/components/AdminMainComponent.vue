@@ -153,6 +153,7 @@ import axios from 'axios';
         await axios.post( `api/files/`,
           form
         )
+        location.reload();
         //Reloads Page after update button pressed
     
         console.log(updatedHtml)
@@ -176,6 +177,7 @@ import axios from 'axios';
         await axios.delete(
           `api/files/${id}`
         )
+        location.reload();
         this.$notify({
           group: 'success',
           text: 'Point was successfully deleted',

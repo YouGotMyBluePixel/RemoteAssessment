@@ -5307,6 +5307,7 @@ __webpack_require__.r(__webpack_exports__);
       })["finally"](function () {
         return _this.loading = false;
       });
+      location.reload();
     }
   },
   components: {}
@@ -5399,7 +5400,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       link: {},
       Title: '',
       Link: '',
-      Tab: 1
+      Tab: 0
     };
   },
   methods: {
@@ -5414,9 +5415,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         Link: this.Link,
         New_Tab: this.Tab
       }).then(function (response) {
-        return _this.$router.push({
-          name: 'home'
-        });
+        return _this.$router.push();
       })["catch"](function (err) {
         return console.log(err);
       })["finally"](function () {
@@ -5458,7 +5457,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _FileUpload_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FileUpload.vue */ "./resources/js/components/Admin/FileUpload.vue");
 //
 //
 //
@@ -5497,7 +5495,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'modal',
   methods: {
@@ -5505,9 +5523,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit('close');
     }
   },
-  components: {
-    FileUpload: _FileUpload_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
-  }
+  components: {}
 });
 
 /***/ }),
@@ -5887,7 +5903,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     link: Object
@@ -5896,6 +5911,12 @@ __webpack_require__.r(__webpack_exports__);
     close: function close() {
       this.$emit('close');
     }
+  },
+  updateLink: function updateLink() {
+    this.LinkInfo.push({
+      name: this.Link.name
+    });
+    console.log(this.Link);
   },
   components: {},
   data: function data() {
@@ -5920,6 +5941,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
 //
 //
 //
@@ -6182,96 +6205,108 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     toggleDeleteModal: function toggleDeleteModal(link) {
       this.linkData = link;
       this.isDeleteLinkModalVisible = !this.isDeleteLinkModalVisible;
+    },
+    editlink: function editlink(id, updatedLink) {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var form;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _this2.isEditLinkModalVisible = !_this2.isEditLinkModalVisible;
+                _context.prev = 1;
+
+                if (updatedLink.New_Tab) {
+                  updatedLink.New_Tab = 1;
+                } else {
+                  updatedLink.New_Tab = 0;
+                }
+
+                form = new FormData();
+                form.append('id', id);
+                form.append('Link_Title', updatedLink.Link_Title);
+                form.append('Link', updatedLink.Link);
+                form.append('New_Tab', updatedLink.New_Tab);
+                _context.next = 10;
+                return axios.post("api/links/", form);
+
+              case 10:
+                location.reload(); //Reloads Page after update button pressed
+
+                console.log(updatedLink);
+
+                _this2.$notify({
+                  group: 'success',
+                  text: 'Point updated successfully'
+                });
+
+                _context.next = 19;
+                break;
+
+              case 15:
+                _context.prev = 15;
+                _context.t0 = _context["catch"](1);
+
+                _this2.$notify({
+                  group: 'error',
+                  text: 'An error has occurred'
+                });
+
+                console.log(_context.t0.message);
+
+              case 19:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[1, 15]]);
+      }))();
+    },
+    // return
+    deleteLink: function deleteLink(id) {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+                _this3.isDeleteLinkModalVisible = !_this3.isDeleteLinkModalVisible;
+                _context2.next = 4;
+                return axios["delete"]("api/links/".concat(id));
+
+              case 4:
+                location.reload();
+
+                _this3.$notify({
+                  group: 'success',
+                  text: 'Point was successfully deleted'
+                });
+
+                location.reload();
+                _context2.next = 12;
+                break;
+
+              case 9:
+                _context2.prev = 9;
+                _context2.t0 = _context2["catch"](0);
+
+                _this3.$notify({
+                  group: 'error',
+                  text: 'An error has occurred'
+                });
+
+              case 12:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 9]]);
+      }))();
     }
-  },
-  editlink: function editlink(id, updatedLink) {
-    var _this2 = this;
-
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      var form;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _this2.isEditLinkModalVisible = !_this2.isEditLinkModalVisible;
-              _context.prev = 1;
-              form = new FormData();
-              form.append('id', id);
-              form.append('Link_Title', updatedLink.Link_Title);
-              form.append('Link', updatedLink.Link);
-              form.append('New_Tab', updatedLink.New_Tab);
-              _context.next = 9;
-              return axios.post("api/links/", form);
-
-            case 9:
-              //Reloads Page after update button pressed
-              console.log(updatedLink);
-
-              _this2.$notify({
-                group: 'success',
-                text: 'Point updated successfully'
-              });
-
-              _context.next = 17;
-              break;
-
-            case 13:
-              _context.prev = 13;
-              _context.t0 = _context["catch"](1);
-
-              _this2.$notify({
-                group: 'error',
-                text: 'An error has occurred'
-              });
-
-              console.log(_context.t0.message);
-
-            case 17:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, null, [[1, 13]]);
-    }))();
-  },
-  deleteLink: function deleteLink(id) {
-    var _this3 = this;
-
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              _context2.prev = 0;
-              _this3.isDeleteLinkModalVisible = !_this3.isDeleteLinkModalVisible;
-              _context2.next = 4;
-              return axios["delete"]("api/links/".concat(id));
-
-            case 4:
-              _this3.$notify({
-                group: 'success',
-                text: 'Point was successfully deleted'
-              });
-
-              _context2.next = 10;
-              break;
-
-            case 7:
-              _context2.prev = 7;
-              _context2.t0 = _context2["catch"](0);
-
-              _this3.$notify({
-                group: 'error',
-                text: 'An error has occurred'
-              });
-
-            case 10:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2, null, [[0, 7]]);
-    }))();
   }
 });
 
@@ -6549,7 +6584,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios__WEBPACK_IMPORTED_MODULE_8___default().post("api/files/", form);
 
               case 9:
-                //Reloads Page after update button pressed
+                location.reload(); //Reloads Page after update button pressed
+
                 console.log(updatedHtml);
 
                 _this2.$notify({
@@ -6557,11 +6593,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   text: 'Point updated successfully'
                 });
 
-                _context.next = 17;
+                _context.next = 18;
                 break;
 
-              case 13:
-                _context.prev = 13;
+              case 14:
+                _context.prev = 14;
                 _context.t0 = _context["catch"](1);
 
                 _this2.$notify({
@@ -6571,12 +6607,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 console.log(_context.t0.message);
 
-              case 17:
+              case 18:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 13]]);
+        }, _callee, null, [[1, 14]]);
       }))();
     },
     deleteHtml: function deleteHtml(id) {
@@ -6593,16 +6629,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios__WEBPACK_IMPORTED_MODULE_8___default()["delete"]("api/files/".concat(id));
 
               case 4:
+                location.reload();
+
                 _this3.$notify({
                   group: 'success',
                   text: 'Point was successfully deleted'
                 });
 
-                _context2.next = 10;
+                _context2.next = 11;
                 break;
 
-              case 7:
-                _context2.prev = 7;
+              case 8:
+                _context2.prev = 8;
                 _context2.t0 = _context2["catch"](0);
 
                 _this3.$notify({
@@ -6610,12 +6648,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   text: 'An error has occurred'
                 });
 
-              case 10:
+              case 11:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 7]]);
+        }, _callee2, null, [[0, 8]]);
       }))();
     }
   }
@@ -61305,10 +61343,10 @@ var render = function() {
                                 expression: "Tab"
                               }
                             ],
-                            attrs: { type: "checkbox", value: "true" },
+                            attrs: { type: "checkbox" },
                             domProps: {
                               checked: Array.isArray(_vm.Tab)
-                                ? _vm._i(_vm.Tab, "true") > -1
+                                ? _vm._i(_vm.Tab, null) > -1
                                 : _vm.Tab
                             },
                             on: {
@@ -61317,7 +61355,7 @@ var render = function() {
                                   $$el = $event.target,
                                   $$c = $$el.checked ? true : false
                                 if (Array.isArray($$a)) {
-                                  var $$v = "true",
+                                  var $$v = null,
                                     $$i = _vm._i($$a, $$v)
                                   if ($$el.checked) {
                                     $$i < 0 && (_vm.Tab = $$a.concat([$$v]))
@@ -61428,7 +61466,50 @@ var render = function() {
         { staticClass: "modal-body" },
         [
           _vm._t("body", function() {
-            return [_c("FileUpload")]
+            return [
+              _c("div", { staticClass: "container" }, [
+                _c("div", { staticClass: "row justify-content-center" }, [
+                  _c("div", { staticClass: "col-md-8" }, [
+                    _c("div", { staticClass: "card" }, [
+                      _c("div", { staticClass: "card-body" }, [
+                        _vm.success != ""
+                          ? _c("div", { staticClass: "alert alert-success" }, [
+                              _vm._v(
+                                "\n                          " +
+                                  _vm._s(_vm.success) +
+                                  "\n                      "
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c(
+                          "form",
+                          {
+                            attrs: { enctype: "multipart/form-data" },
+                            on: { submit: _vm.formSubmit }
+                          },
+                          [
+                            _vm._m(0),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-control",
+                              attrs: { type: "file" },
+                              on: { change: _vm.onChange }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              { staticClass: "btn btn-primary btn-block" },
+                              [_vm._v("Upload")]
+                            )
+                          ]
+                        )
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ]
           })
         ],
         2
@@ -61457,7 +61538,18 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", [_vm._v("Name")]),
+      _vm._v(" "),
+      _c("input", { staticClass: "form-control", attrs: { type: "text" } })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -62064,7 +62156,22 @@ var render = function() {
                       }
                     }
                   })
-                ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "text-green-500 bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.$emit("editlink", _vm.link.id, _vm.link)
+                      }
+                    }
+                  },
+                  [_vm._v("\n              Save Changes\n            ")]
+                )
               ]
             })
           ],
@@ -62072,21 +62179,6 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("footer", { staticClass: "modal-footer" }, [
-          _c(
-            "button",
-            {
-              staticClass:
-                "text-green-500 bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150",
-              attrs: { type: "button" },
-              on: {
-                click: function($event) {
-                  return _vm.$emit("editlink", _vm.link.id, _vm.link)
-                }
-              }
-            },
-            [_vm._v("\n              Save Changes\n            ")]
-          ),
-          _vm._v(" "),
           _c(
             "button",
             {
@@ -62147,6 +62239,8 @@ var render = function() {
                 on: { submit: _vm.formSubmit }
               },
               [
+                _vm._m(0),
+                _vm._v(" "),
                 _c("input", {
                   staticClass: "form-control",
                   attrs: { type: "file" },
@@ -62164,7 +62258,18 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", [_vm._v("Name")]),
+      _vm._v(" "),
+      _c("input", { staticClass: "form-control", attrs: { type: "text" } })
+    ])
+  }
+]
 render._withStripped = true
 
 
