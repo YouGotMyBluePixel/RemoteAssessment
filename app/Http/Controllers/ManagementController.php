@@ -40,7 +40,7 @@ class ManagementController extends Controller
         $request->validate([
             'file' => 'required|mimes:jpg,jpeg,png,csv,txt,xlx,xls,pdf|max:2048'
          ]);
-         $File = new File;
+         $File = new PDFs;
          if($request->file()) {
              $file_name = time().'_'.$request->file->getClientOriginalName();
              $file_path = $request->file('file')->storeAs('uploads', $file_name, 'public');
@@ -51,6 +51,17 @@ class ManagementController extends Controller
  
              return response()->json(['success'=>'File uploaded successfully.']);
          }
+    }
+    public function storeHtml(Request $request)
+    {
+        $html = new Html([
+            'Html_Title' => $request->input('Html_Title'),
+            'Snippet_Description' => $request->input('Snippet_Description'),
+            'Html_Snippet' => $request->input('Html_Snippet')
+        ]);
+        $html->save();
+
+        return response()->json('Product created!');
     }
     public function getHtml(Request $request)
     {
@@ -67,6 +78,13 @@ class ManagementController extends Controller
         $PDFs = PDFs::get();
         return response()->json($PDFs);
     }   
+    public function updateHtml($id, Request $request)
+    {
+        $Html = Html::findOrFail($id);
+        $Html->update($request->all());
+
+        return response()->json('Html updated!');
+    }
        
     
 

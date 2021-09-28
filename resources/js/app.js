@@ -37,7 +37,7 @@ import "datatables.net-dt/css/jquery.dataTables.min.css"
  import VueRouter from 'vue-router'
  Vue.use(VueRouter)
 
- import Home from './components/ExampleComponent.vue'
+ import Home from './components/AdminMainComponent.vue'
  import LinkTable from './components/Admin/LinkTable.vue'
  import PDFTable from './components/Admin/PdfTable.vue'
  const router = new VueRouter({

@@ -17,5 +17,3 @@ use App\Http\Controllers\ManagementController;
 Route::get('/{any}', function () {
     return view('welcome');
 })->where('any', '.*');
-Route::get('files', [ManagementController::class, 'getFile']);
-Route::post('/store', [ManagementController::class, 'store']);

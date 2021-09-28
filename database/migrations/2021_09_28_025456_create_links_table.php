@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHtmlsTable extends Migration
+class CreateLinksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateHtmlsTable extends Migration
      */
     public function up()
     {
-        Schema::create('htmls', function (Blueprint $table) {
+        Schema::create('links', function (Blueprint $table) {
             $table->id();
-            $table->string('Html_Title');
-            $table->string('Snippet_Description');
-            $table->longText('Html_Snippet');
+            $table->string('Link_Title');
+            $table->string('Link');
+            $table->boolean('New_Tab');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateHtmlsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('htmls');
+        Schema::dropIfExists('links');
     }
 }

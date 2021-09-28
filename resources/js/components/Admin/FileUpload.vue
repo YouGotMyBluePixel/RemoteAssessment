@@ -3,7 +3,6 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">TESTING</div>
 
                     <div class="card-body">
 
@@ -49,7 +48,7 @@
                 let data = new FormData();
                 data.append('file', this.file);
 
-                axios.post('/store', data, config)
+                axios.post('api/store', data, config)
                     .then(function (res) {
                         existingObj.success = res.data.success;
                     })

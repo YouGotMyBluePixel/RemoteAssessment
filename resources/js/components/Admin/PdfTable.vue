@@ -1,17 +1,31 @@
 <template lang="">
+
     <div>
     <nav-bar>
   </nav-bar>
+  
   <div class="px-4 py-6 sm:px-0">
         
        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+          <button
+      type="button"
+      class="btn"
+      @click="showModal"
+    >
+      New
+    </button>
+
+    <modal
+      v-show="isModalVisible"
+      @close="closeModal"
+    />
   <table class="table table-hover table-bordered" id="example">
     <thead>
       <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Link</th>
-        <th>New Tab</th>
+        <th>Path</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -19,7 +33,7 @@
         <td>{{pdf.id}}</td>
          <td>{{pdf.name}}</td>
         <td>{{pdf.path}}</td>
-        <td>{{pdf.New_Tab}}</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -29,8 +43,10 @@
 </template>
 <script>
 import NavBar from '../Layouts/AdminNavBar.vue'
+import modal from './AddPdfModal.vue'
 export default {
     components: {
+      modal,
         NavBar
     },
     mounted(){
@@ -45,9 +61,20 @@ export default {
       
     })
   },
+   methods: {
+             showModal() {
+        this.isModalVisible = true;
+      },
+      closeModal() {
+        this.isModalVisible = false;
+      }
+    
+            
+        },
   data() {
             return {
-              pdfs:[]
+              pdfs:[],
+              isModalVisible: false
             }
         },
 }

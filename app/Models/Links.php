@@ -11,6 +11,6 @@ class Links extends Model
     protected $fillable = [
         'Link_Title',
         'Link',
-        'New_tab',
+        'New_Tab',
      ];    
 }

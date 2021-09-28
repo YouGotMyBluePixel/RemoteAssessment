@@ -1,15 +1,49 @@
 <template lang="">
-    <div><form submit="postData" method="post">
-       <input type="text" name="Title" placeholder="Title"></input>
-       <textarea id="snippet_description" name="snippet_description" rows="4" cols="50">Snippet Description</textarea>
-       <textarea id="html_snippet" name="html_snippet" rows="4" cols="50">HTML SNIPPET</textarea>
-       <button type="submit">Create</button>
-       </form>
+    <div>
+        <div class="row">
+            <div class="col-md-6">
+                <form @submit.prevent="addHtml">
+                    <div class="form-group">
+                        <label>Html_Title
+       
+       </label>
+                        <input type="text" class="form-control" v-model="html.Html_Title">
+                    </div>
+                    <div class="form-group">
+                        <label>Snippet_Description</label>
+                        <input type="text" class="form-control" v-model="html.Snippet_Description">
+                    </div>
+                     <div class="form-group">
+                        <label>Html_Snippet</label>
+                        <input type="text" class="form-control" v-model="html.Html_Snippet">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </form>
+            </div>
+        </div>
     </div>
 </template>
 <script>
+
+import axios from 'axios';
+
 export default {
-    
+    data() {
+            return {
+                html: {}
+            }
+        },
+        methods: {
+            addHtml() {
+                axios
+                    .post('/api/storehtml', this.html)
+                    .then(response => (
+                        this.$router.push({ name: 'home' })
+                    ))
+                    .catch(err => console.log(err))
+                    .finally(() => this.loading = false)
+            }
+        }
 }
 </script>
 <style lang="">
