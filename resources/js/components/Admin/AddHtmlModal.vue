@@ -21,18 +21,19 @@
             <div class="col-md-6">
                 <form @submit.prevent="addhtml">
                     <div class="form-group">
-                        <label>Name</label>
+                        <label>Title of Html</label>
                         <input type="text" class="form-control" v-model="html.Html_Title">
                     </div>
                     <div class="form-group">
-                        <label>Detail</label>
+                        <label>Description</label>
                         <input type="text" class="form-control" v-model="html.Snippet_Description">
                     </div>
                     <div class="form-group">
-                        <label>Detail</label>
-                        <input type="text" class="form-control" v-model="html.Html_Snippet">
+                        <label>Snippet</label>
+                        <textarea type="text" class="form-control" v-model="html.Html_Snippet"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Create</button>
+                    <button type="submit" class="text-green-500 bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Create</button>
+                    
                 </form>
             </div>
         </div>
@@ -41,9 +42,7 @@
 
       <footer class="modal-footer">
         <slot name="footer">
-        
         </slot>
-      
         <button
           type="button"
           class="text-green-500 bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -51,6 +50,7 @@
         >
           Close Modal
         </button>
+        
       </footer>
     </div>
   </div>

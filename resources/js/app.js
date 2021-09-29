@@ -44,6 +44,8 @@ Vue.use(Notifications)
  import LinkTable from './components/Admin/LinkTable.vue'
  import PDFTable from './components/Admin/PdfTable.vue'
  import Visitors from './components/Admin/Visitors.vue'
+ import VisitorPdf from './components/Admin/Visitorpdf.vue'
+ import VisitorLinks from './components/Admin/Visitorslink.vue'
  const router = new VueRouter({
      mode: 'history',
      routes: [
@@ -66,6 +68,16 @@ Vue.use(Notifications)
             path: '/visitors',
             name: 'visitor',
             component: Visitors
+        },
+        {
+            path: '/visitorspdf',
+            name: 'visitorpdf',
+            component: VisitorPdf
+        },
+        {
+            path: '/visitorslinks',
+            name: 'visitorlinks',
+            component: VisitorLinks
         },
          
      ],
