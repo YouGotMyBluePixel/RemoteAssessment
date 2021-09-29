@@ -4,7 +4,7 @@
     <div class="modal">
       <header class="modal-header">
         <slot name="header">
-          EDIT PDF
+          Edit File and Title
         </slot>
         <button
           type="button"
@@ -19,7 +19,6 @@
           <div class="grid grid-cols-1 space-y-2">
              <input type="text" class="form-control" v-model="pdf.name">
               <input type="file" class="form-control" v-on:change="onChange">
-                            <button class="btn btn-primary btn-block">Upload</button>
             </div>
              <button
               @click="$emit('editpdf', pdf.id, pdf, file)"

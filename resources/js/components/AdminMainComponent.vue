@@ -79,8 +79,6 @@
  import AddhtmlModal from './Admin/AddHtmlModal.vue'
  import EdithtmlModal from './Admin/EditHtmlModal.vue'
  import DeletehtmlModal from './Admin/DeleteHtmlModal.vue'
-import FileUpload from './Admin/FileUpload.vue'
-import InputForm from './Admin/InputForm.vue'
 import NavBar from './Layouts/AdminNavBar.vue'
 import $ from 'jquery'; 
 import axios from 'axios';
@@ -107,8 +105,6 @@ import Notifications from 'vue-notification'
     })
   },
         components: {
-            FileUpload,
-            InputForm,
             NavBar,
             AddhtmlModal,
             EdithtmlModal,

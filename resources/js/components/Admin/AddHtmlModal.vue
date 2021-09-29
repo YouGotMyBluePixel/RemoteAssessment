@@ -4,7 +4,7 @@
     <div class="modal">
       <header class="modal-header">
         <slot name="header">
-          Add Data
+          Add Html Snippet
         </slot>
         <button
           type="button"
@@ -21,18 +21,18 @@
             <div class="col-md-6">
                 <form @submit.prevent="addhtml">
                     <div class="form-group">
-                        <label>Title of Html</label>
-                        <input type="text" class="form-control" v-model="html.Html_Title">
+                        <label>Title of Html:</label>
+                        <input type="text" class="w-full mt-2 mb-6 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-500" placeholder="Title"v-model="html.Html_Title">
                     </div>
                     <div class="form-group">
-                        <label>Description</label>
-                        <input type="text" class="form-control" v-model="html.Snippet_Description">
+                        <label>Description:</label>
+                        <input type="text" class="w-full mt-2 mb-6 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-500" placeholder="Description"v-model="html.Snippet_Description">
                     </div>
                     <div class="form-group">
-                        <label>Snippet</label>
-                        <textarea type="text" class="form-control" v-model="html.Html_Snippet"></textarea>
+                        <label>Snippet:</label>
+                        <textarea type="text" class="w-full mt-2 mb-6 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-500" rows="3" placeholder="Code Snippet" v-model="html.Html_Snippet"></textarea>
                     </div>
-                    <button type="submit" class="text-green-500 bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Create</button>
+                    <button type="submit" class=" text-green-500 bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-2 mb-1 ease-linear transition-all duration-150">Create</button>
                     
                 </form>
             </div>

@@ -39,13 +39,12 @@ Vue.use(Notifications)
  import Vue from 'vue'
  import VueRouter from 'vue-router'
  Vue.use(VueRouter)
-
  import Home from './components/AdminMainComponent.vue'
  import LinkTable from './components/Admin/LinkTable.vue'
  import PDFTable from './components/Admin/PdfTable.vue'
- import Visitors from './components/Admin/Visitors.vue'
- import VisitorPdf from './components/Admin/Visitorpdf.vue'
- import VisitorLinks from './components/Admin/Visitorslink.vue'
+ import Visitors from './components/Visitors/Visitors.vue'
+ import VisitorPdf from './components/Visitors/Visitorpdf.vue'
+ import VisitorLinks from './components/Visitors/Visitorslink.vue'
  const router = new VueRouter({
      mode: 'history',
      routes: [

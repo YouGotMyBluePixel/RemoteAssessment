@@ -4,7 +4,7 @@
     <div class="modal">
       <header class="modal-header">
         <slot name="header">
-          EDIT
+          Edit Link
         </slot>
         <button
           type="button"
@@ -17,30 +17,30 @@
       <section class="modal-body">
         <slot name="body">
           <div class="grid grid-cols-1 space-y-2">
-              <label class="text-sm font-bold text-gray-500 tracking-wide"
+              <label class="grid grid-cols-1 space-y-2"
                 >Link Title</label
               >
               <input
-                class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
+                class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type=""
                 placeholder="Title"
                 v-model="link.Link_Title"
               />
             </div>
             <div class="grid grid-cols-1 space-y-2">
-              <label class="text-sm font-bold text-gray-500 tracking-wide"
+              <label class="grid grid-cols-1 space-y-2"
                 >Link</label
               >
               <input
-                class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
+                class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                 type=""
                 placeholder="Description"
                v-model="link.Link"
               />
             </div>
             <div class="grid grid-cols-1 space-y-2">
-              <label class="text-sm font-bold text-gray-500 tracking-wide"
-                >Open in new tab:</label
+              <label class="font-light"
+                >*Open in new tab:</label
               >
               <input
                 class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"

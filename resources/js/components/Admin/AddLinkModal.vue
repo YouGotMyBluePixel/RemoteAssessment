@@ -4,7 +4,7 @@
     <div class="modal">
       <header class="modal-header">
         <slot name="header">
-          Add Data
+          Add Links
         </slot>
         <button
           type="button"
@@ -23,14 +23,14 @@
                     <div class="form-group">
                         <label>Link Title 
        </label>
-                        <input type="text" class="form-control" v-model="Title">
+                        <input type="text" class="w-full mt-2 mb-6 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-500" v-model="Title">
                     </div>
                     <div class="form-group">
                         <label>Link</label>
-                        <input type="text" class="form-control" v-model="Link" >
+                        <input type="text" class="w-full mt-2 mb-6 px-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-green-500" v-model="Link" >
                     </div>
                      <div class="form-group">
-                        <label>Open in new tab</label>
+                        <label class="font-light">*Open in new tab</label>
                         <input type="checkbox" v-model="Tab">
                     </div>
                   <button type="submit" class="text-green-500 bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Create</button>
@@ -90,6 +90,7 @@ export default {
                     ))
                     .catch(err => console.log(err))
                     .finally(() => this.loading = false)
+                    location.reload();
             }
     },
     async mounted() {

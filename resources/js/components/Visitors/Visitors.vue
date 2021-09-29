@@ -1,48 +1,15 @@
 <template lang="">
     <div>
-         <nav class="bg-gray-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <div class="flex items-center">
-          <div class="flex-shrink-0">
-            <img class="h-8 w-8" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow">
-          </div>
-          <div class="hidden md:block">
-            <div class="ml-10 flex items-baseline space-x-4">
-              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-              <a href="/visitors" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Html Snippet</a>
-
-              <a href="/visitorspdf" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Pdf</a>
-
-              <a href="/visitorslinks" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Links</a>
-
-            </div>
-          </div>
-        </div>
-        </div>
-        </div>
-        </nav>
+        <VisitorNavBar></VisitorNavBar>
         <div v-for="html in htmls" :key="html.id">
       
        <div class="container">
       <p class="language" id="language-copy">{{html.Html_Title}}</p>
+      <p class="language" id="language-copy">{{html.Snippet_Description}}</p>
       <div class="code-wrapper">
         <pre>
                 <code id="code">
-function fibonacci(num)
-{
-  var num1=0;
-  var num2=1;
-  var sum;
-  var i=0;
-  for (i = 0; i < num; i++)
-    {
-      sum=num1+num2;
-      num1=num2;
-      num2=sum;
-    }
-    return num2;
-} 
+{{html.Snippet}}
 </code>
             </pre>
              <button id="copy-button" @click="addEventListener">Copy</button>
@@ -56,7 +23,11 @@ function fibonacci(num)
     </div>
 </template>
 <script>
+import VisitorNavBar from './VisitorNavBar.vue'
 export default {
+  components: {
+            VisitorNavBar,
+        },
     data() {
         return {
              htmls:[],

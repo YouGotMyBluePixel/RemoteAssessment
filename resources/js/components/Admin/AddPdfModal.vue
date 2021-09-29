@@ -1,9 +1,10 @@
 <template lang="">
+<transition name="modal-fade">
     <div class="modal-backdrop">
     <div class="modal">
       <header class="modal-header">
         <slot name="header">
-          Add Data
+          Add File and Title
         </slot>
         <button
           type="button"
@@ -25,7 +26,9 @@
                         <div v-if="success != ''" class="alert alert-success">
                             {{success}}
                         </div>
+                        
                         <form @submit="formSubmit" enctype="multipart/form-data">
+                        
                            <input type="text" class="form-control" v-model="name">
                             <input type="file" class="form-control" v-on:change="onChange">
                             <button class="btn btn-primary btn-block">Upload</button>
@@ -40,11 +43,11 @@
 
       <footer class="modal-footer">
         <slot name="footer">
-          This is the default footer!
+         
         </slot>
         <button
           type="button"
-          class="btn-green"
+          class="text-green-500 bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
           @click="close"
         >
           Close Modal
@@ -53,6 +56,7 @@
     </div>
   </div>
   </div>
+  </transition>
 </template>
 <script>
 
@@ -151,7 +155,15 @@ export default {
     position: relative;
     padding: 20px 10px;
   }
+.modal-fade-enter,
+  .modal-fade-leave-to {
+    opacity: 0;
+  }
 
+  .modal-fade-enter-active,
+  .modal-fade-leave-active {
+    transition: opacity .4s ease;
+  }
   .btn-close {
     position: absolute;
     top: 0;

@@ -4,7 +4,7 @@
     <div class="modal">
       <header class="modal-header">
         <slot name="header">
-          EDIT
+          Delete Link
         </slot>
         <button
           type="button"

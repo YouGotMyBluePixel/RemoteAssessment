@@ -4,7 +4,7 @@
     <div class="modal">
       <header class="modal-header">
         <slot name="header">
-          EDIT
+          DELETE
         </slot>
         <button
           type="button"
@@ -23,20 +23,18 @@
                            Are you sure you want to delete "{{pdf.name}}"?
                         </h3>
                         </div>
-             <button
+             
+        </slot>
+       </section>
+
+      <footer class="modal-footer">
+      <button
               @click="$emit('deletePdf', pdf.id, pdf)"
               class="text-green-500 bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
               type="button"
             >
               Save Changes
             </button>
-        </slot>
-       </section>
-
-      <footer class="modal-footer">
-        <!-- <slot name="footer"> -->
-          
-        <!-- </slot> -->
         <button
              @click="close"
               class="text-green-500 bg-transparent border border-solid border-green-500 hover:bg-green-500 hover:text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
