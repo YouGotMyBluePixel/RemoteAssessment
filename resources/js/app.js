@@ -4,9 +4,19 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
 
+ require('./bootstrap');
 window.Vue = require('vue').default;
+//Bootstrap and jQuery libraries
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'jquery/dist/jquery.min.js';
+//Datatable Modules
+import "datatables.net-dt/js/dataTables.dataTables"
+import "datatables.net-dt/css/jquery.dataTables.min.css"
+
+import Notifications from 'vue-notification/dist/ssr.js'
+Vue.use(Notifications)
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -19,14 +29,59 @@ window.Vue = require('vue').default;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
-const app = new Vue({
-    el: '#app',
-});
+ import Vue from 'vue'
+ import VueRouter from 'vue-router'
+ Vue.use(VueRouter)
+ import Home from './components/AdminMainComponent.vue'
+ import LinkTable from './components/Admin/LinkTable.vue'
+ import PDFTable from './components/Admin/PdfTable.vue'
+ import Visitors from './components/Visitors/Visitors.vue'
+ import VisitorPdf from './components/Visitors/Visitorpdf.vue'
+ import VisitorLinks from './components/Visitors/Visitorslink.vue'
+ const router = new VueRouter({
+     mode: 'history',
+     routes: [
+         {
+             path: '/',
+             name: 'home',
+             component: Home
+         },
+         {
+            path: '/linktable',
+            name: 'linktable',
+            component: LinkTable
+        },
+        {
+            path: '/pdfs',
+            name: 'pdf',
+            component: PDFTable
+        },
+        {
+            path: '/visitors',
+            name: 'visitor',
+            component: Visitors
+        },
+        {
+            path: '/visitorspdf',
+            name: 'visitorpdf',
+            component: VisitorPdf
+        },
+        {
+            path: '/visitorslinks',
+            name: 'visitorlinks',
+            component: VisitorLinks
+        },
+         
+     ],
+ });
+ const app = new Vue({
+     el: '#app',
+     router,
+ });
