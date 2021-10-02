@@ -7133,6 +7133,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -64571,7 +64576,11 @@ var render = function() {
               _c("pre", [
                 _vm._v("                "),
                 _c("code", { attrs: { id: "code" } }, [
-                  _vm._v("\n" + _vm._s(html.Snippet) + "\n")
+                  _vm._v(
+                    "\n                 \n                    \n                      \n" +
+                      _vm._s(html.Html_Snippet) +
+                      "\n\n\n"
+                  )
                 ]),
                 _vm._v("\n            ")
               ]),

@@ -9,7 +9,12 @@
       <div class="code-wrapper">
         <pre>
                 <code id="code">
-{{html.Snippet}}
+                 
+                    
+                      
+{{html.Html_Snippet}}
+
+
 </code>
             </pre>
              <button id="copy-button" @click="addEventListener">Copy</button>
