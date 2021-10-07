@@ -7,7 +7,7 @@
         <p class="text-5xl italic font-bold">Links</p>
         <ul class="list-disc">
         <div v-for="link in links" :key="link.id">
-            <button @click="LinkTab(link)" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">asdasdasdsa</button>
+            <button @click="LinkTab(link)" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{{link.Link_Title}}</button>
             </div>
             </ul>
             </div>
